@@ -4,19 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Welcome!</h1>
-    <footer>
-      Coded by
+    <header>
+      <form class="container form-container">
+        <input
+          id="search-bar"
+          type="search"
+          placeholder="🏙️ Search for a city... "
+          required
+        />
+        <input id="search-button" type="submit" value="🔍 Search" />
+      </form>
+    </header>
+    <body>
+      <div class="container main-container">
+        <h1 id="city">California, LA</h1>
+        <h2 id="day-and-time">Tuesday 12:00pm</h2>
+        <div class="grid">
+          <div id="icon">⛅</div>
+          <div id="temperature">25°<span class="large-celcius">C</span></div>
+          <div id="status">Partly cloudy</div>
+          <div id="range">
+            <span>High: 26°<span class="small-celcius">C</span></span> |
+            <span>Low: 15°<span class="small-celcius">C</span></span>
+          </div>
+        </div>
+      </div>
+    </body>
+    <footer class="container">
+      This project was coded by
       <a href="https://github.com/jesssanders" target="_blank">Jess Sanders</a>,
-      hosted on
+      is open-sourced on
       <a href="https://github.com/jesssanders/weather-project" target="_blank"
         >GitHub</a
-      >, and the website is hosted on
+      >, and hosted on
       <a href="https://weather-project-jess.netlify.app/" target="_blank"
         >Netlify</a
-      >
+      >.
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>

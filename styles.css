@@ -1,0 +1,92 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  background-color: #a9e3f1;
+  color: white;
+}
+
+footer {
+  background-color: #5e919d;
+  font-size: 13px;
+  box-shadow: 3px 3px 10px 1px rgb(0 0 255 / 0.2);
+}
+
+a {
+  color: #002731;
+}
+
+.container {
+  border-radius: 20px;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px 10px;
+  box-shadow: 3px 3px 10px 1px rgb(0 0 255 / 0.2);
+}
+
+.form-container {
+  background-color: #5e919d;
+  margin-bottom: 15px;
+}
+
+#search-bar {
+  width: 70%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#search-button {
+  width: 20%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 5px;
+  background-color: white;
+}
+
+.main-container {
+  background-color: #5e919d;
+  margin-bottom: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+#city {
+  font-size: 50px;
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+#day-and-time {
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+#icon {
+  font-size: 80px;
+}
+
+#status {
+  font-size: 18px;
+}
+
+#temperature {
+  font-size: 80px;
+}
+
+.small-celcius {
+  font-size: 10px;
+}
+
+.large-celcius {
+  font-size: 35px;
+}
+
+#range {
+  font-size: 18px;
+}
