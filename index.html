@@ -23,12 +23,28 @@
         <h1 id="city">California, LA</h1>
         <h2 id="day-and-time">Tuesday 12:00pm</h2>
         <div class="grid">
-          <div id="icon">⛅</div>
-          <div id="temperature">25°<span class="large-celcius">C</span></div>
-          <div id="status">Partly cloudy</div>
-          <div id="range">
-            <span>High: 26°<span class="small-celcius">C</span></span> |
-            <span>Low: 15°<span class="small-celcius">C</span></span>
+          <div id="column">
+            <div id="weather-icon">⛅</div>
+            <div id="status">Partly cloudy</div>
+            <div>
+              <span id="humidity"><strong>Humidity:</strong> 50%</span>
+              <span id="wind"><strong>Wind:</strong> 5 knots </span>
+            </div>
+          </div>
+          <div id="column">
+            <div id="temperature">25°<span class="large-unit">C</span></div>
+            <div id="temp-range">
+              <span id="low-temp"
+                ><strong>High: </strong>26°<span class="small-unit"
+                  >C</span
+                ></span
+              >
+              <span id="high-temp"
+                ><strong>Low: </strong>15°<span class="small-unit"
+                  >C</span
+                ></span
+              >
+            </div>
           </div>
         </div>
       </div>
