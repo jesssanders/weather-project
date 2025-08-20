@@ -19,7 +19,7 @@ footer {
 /* Containers */
 .container {
   border-radius: 20px;
-  max-width: 80%;
+  max-width: 75%;
   margin: 0 auto;
   padding: 20px 10px;
   box-shadow: 3px 3px 10px 1px rgb(0 0 255 / 0.2);
@@ -31,6 +31,11 @@ footer {
 }
 
 .main-container {
+  background-color: #5e919d;
+  margin-bottom: 15px;
+}
+
+#forecast-container {
   background-color: #5e919d;
   margin-bottom: 15px;
 }
@@ -53,25 +58,49 @@ footer {
 }
 
 /* Main display */
-.grid {
+.header-grid {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 70% 30%;
 }
 
 .column {
   align-content: center;
+  min-height: 100px;
+  height: auto;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.main-column {
+  align-content: center;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+}
+
+.forecast-column {
+  align-content: center;
+  background-color: #073f4d;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 2px;
 }
 
 #city {
   font-size: 50px;
   margin-bottom: 0px;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
-#day-and-time {
+h2 {
   font-size: 20px;
-  margin-top: 0px;
-  margin-bottom: 20px;
+  margin: 0px;
   font-weight: 400;
   color: #073f4d;
 }
@@ -80,50 +109,50 @@ footer {
   font-size: 80px;
 }
 
-#status {
+#day-and-time {
+  margin-top: 20px;
+  margin-bottom: 10px;
   font-size: 18px;
-  margin-bottom: 3px;
 }
 
-/* #humidity {
-} */
-
-#wind {
-  margin-left: 5px;
-}
-
-#temperature {
+.temperature {
   font-size: 80px;
+  display: flex;
+  justify-content: center;
 }
 
 .large-unit {
   font-size: 40px;
-  position: absolute;
   margin-top: 15px;
   font-weight: 500;
 }
 
-#temp-range {
+#status {
   font-size: 18px;
-  margin-top: 13px;
+  margin-bottom: 10px;
+}
+/* 
+#feels-like {
+  font-size: 18px;
+} */
+
+#range {
+  display: flex;
+  justify-content: center;
 }
 
 .small-unit {
-  font-size: 12px;
-  position: absolute;
-  margin-top: 1px;
-}
-
-#high-temp {
-  margin-left: 8px;
-}
-
-#low-temp {
-  margin-right: 12px;
+  font-size: 10px;
+  vertical-align: 30%;
 }
 
 /* styles */
 strong {
   font-weight: 500;
   color: #073f4d;
+}
+
+.forecast-weather-icon {
+  height: 50px;
+  width: 50px;
 }

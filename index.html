@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
   </head>
   <body>
     <header>
-      <form class="container form-container">
+      <form id="search-form" class="container form-container">
         <input
           id="search-bar"
           type="search"
@@ -20,30 +21,200 @@
     </header>
     <body>
       <div class="container main-container">
-        <h1 id="city">California, LA</h1>
-        <h2 id="day-and-time">Tuesday 12:00pm</h2>
-        <div class="grid">
-          <div id="column">
-            <div id="weather-icon">⛅</div>
+        <div class="header-grid">
+          <div class="column">
+            <h1 id="city">California</h1>
+            <h2 id="country">United States of America</h2>
+          </div>
+          <div class="column" id="weather-icon">
+            <img
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+            />
+          </div>
+        </div>
+        <div class="main-grid">
+          <div class="main-column">
+            <div id="day-and-time">
+              <strong>
+                <span id="day">Tuesday</span> <span id="date">24</span>
+                <span id="month">January</span>, <span id="hour">12</span>:<span
+                  id="minutes"
+                  >00</span
+                ><span id="ampm">am</span>
+              </strong>
+            </div>
             <div id="status">Partly cloudy</div>
-            <div>
-              <span id="humidity"><strong>Humidity:</strong> 50%</span>
-              <span id="wind"><strong>Wind:</strong> 5 knots </span>
+            <div id="range">
+              <span
+                ><strong>⬆️High: </strong><span id="high-temp-number">26</span
+                ><span class="small-unit">°C</span></span
+              >
+              <span style="margin-left: 5px"
+                ><strong>⬇️Low: </strong><span id="low-temp-number">17</span
+                ><span class="small-unit">°C</span></span
+              >
+            </div>
+            <div id="humidity">
+              <strong>💧Humidity: </strong>
+              <span id="humidity-number">17</span>%
+            </div>
+            <div id="wind">
+              <strong style="margin-left: 5px">💨Wind: </strong>
+              <span id="wind-number">17</span> m/s
             </div>
           </div>
-          <div id="column">
-            <div id="temperature">25°<span class="large-unit">C</span></div>
-            <div id="temp-range">
-              <span id="low-temp"
-                ><strong>High: </strong>26°<span class="small-unit"
-                  >C</span
-                ></span
-              >
-              <span id="high-temp"
-                ><strong>Low: </strong>15°<span class="small-unit"
-                  >C</span
-                ></span
-              >
+          <div class="main-column">
+            <div class="temperature">
+              <span id="temperature">25</span>
+              <span class="large-unit">°C</span>
+            </div>
+            <span id="feels-like"
+              >Feels like <span id="feels-like-number">5</span
+              ><span class="small-unit">°C</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="container" id="forecast-container">
+        <div class="forecast-grid">
+          <div class="forecast-column">
+            <span id="day1">Today</span>
+            <div id="day1Date">25</div>
+            <div id="day1Icon">
+              <img
+                class="forecast-weather-icon"
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+              />
+            </div>
+            <div>
+              <div>
+                <span>H: </span><span id="day1High">14</span
+                ><span class="small-unit">°C</span>
+              </div>
+              <div>
+                <span>L: </span><span id="day1Low">2</span
+                ><span class="small-unit">°C</span>
+              </div>
+            </div>
+          </div>
+          <div class="forecast-column">
+            <span id="day2">Sat</span>
+            <div id="day2Date">26</div>
+            <div id="day2Icon">
+              <img
+                class="forecast-weather-icon"
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+              />
+            </div>
+            <div>
+              <div>
+                <span>H: </span><span id="day2High">14</span
+                ><span class="small-unit">°C</span>
+              </div>
+              <div>
+                <span>L: </span><span id="day2Low">2</span
+                ><span class="small-unit">°C</span>
+              </div>
+            </div>
+          </div>
+          <div class="forecast-column">
+            <span id="day3">Sun</span>
+            <div id="day3Date">26</div>
+            <div id="day3Icon">
+              <img
+                class="forecast-weather-icon"
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+              />
+            </div>
+            <div>
+              <div>
+                <span>H: </span><span id="day3High">14</span
+                ><span class="small-unit">°C</span>
+              </div>
+              <div>
+                <span>L: </span><span id="day3Low">2</span
+                ><span class="small-unit">°C</span>
+              </div>
+            </div>
+          </div>
+          <div class="forecast-column">
+            <span id="day4">Mon</span>
+            <div id="day4Date">27</div>
+            <div id="day4Icon">
+              <img
+                class="forecast-weather-icon"
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+              />
+            </div>
+            <div>
+              <div>
+                <span>H: </span><span id="day4High">14</span
+                ><span class="small-unit">°C</span>
+              </div>
+              <div>
+                <span>L: </span><span id="day4Low">2</span
+                ><span class="small-unit">°C</span>
+              </div>
+            </div>
+          </div>
+          <div class="forecast-column">
+            <span id="day5">Tue</span>
+            <div id="day5Date">28</div>
+            <div id="day5Icon">
+              <img
+                class="forecast-weather-icon"
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+              />
+            </div>
+            <div>
+              <div>
+                <span>H: </span><span id="day5High">14</span
+                ><span class="small-unit">°C</span>
+              </div>
+              <div>
+                <span>L: </span><span id="day5Low">2</span
+                ><span class="small-unit">°C</span>
+              </div>
+            </div>
+          </div>
+          <div class="forecast-column">
+            <span id="day6">Wed</span>
+            <div id="day6Date">29</div>
+            <div id="day6Icon">
+              <img
+                class="forecast-weather-icon"
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+              />
+            </div>
+            <div>
+              <div>
+                <span>H: </span><span id="day6High">14</span
+                ><span class="small-unit">°C</span>
+              </div>
+              <div>
+                <span>L: </span><span id="day6Low">2</span
+                ><span class="small-unit">°C</span>
+              </div>
+            </div>
+          </div>
+          <div class="forecast-column">
+            <span id="day7">Thu</span>
+            <div id="day7Date">30</div>
+            <div id="day7Icon">
+              <img
+                class="forecast-weather-icon"
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png"
+              />
+            </div>
+            <div>
+              <div>
+                <span>H: </span><span id="day7High">14</span
+                ><span class="small-unit">°C</span>
+              </div>
+              <div>
+                <span>L: </span><span id="day7Low">2</span
+                ><span class="small-unit">°C</span>
+              </div>
             </div>
           </div>
         </div>
