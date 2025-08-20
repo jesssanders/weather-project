@@ -1,18 +1,19 @@
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", replaceCity);
+searchForm.addEventListener("submit", handleSearchSubmit);
 
-function replaceCity(event) {
+function handleSearchSubmit(event) {
   event.preventDefault();
+  let searchValue = document.querySelector("#search-bar").value;
+  searchCity(searchValue);
+}
 
-  let searchValue = document.querySelector("#search-bar");
+function searchCity(city) {
+  let apiKey = "36a020bd802233oee28f5e56a4tb2a2d";
+  let currentWeatherAPIURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let forecastWeatherAPIURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
 
-  let city = searchValue.value;
-  console.log(city);
-  let currentWeatherAPIURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=36a020bd802233oee28f5e56a4tb2a2d&units=metric`;
-  let forecastWeatherAPIURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=36a020bd802233oee28f5e56a4tb2a2d&units=metric`;
   axios.get(currentWeatherAPIURL).then(getWeather);
   axios.get(forecastWeatherAPIURL).then(getForecast);
-
   formatDate();
 }
 
@@ -105,6 +106,9 @@ function formatDate() {
     console.log("hours 12", hours12);
     hourField.innerHTML = hours12;
     ampmField.innerHTML = "pm";
+  } else if (currentHour === 12) {
+    hourField.innerHTML = currentHour;
+    ampmField.innerHTML = "pm";
   } else {
     currentHour = currentHour === 0 ? 12 : currentHour;
     hourField.innerHTML = currentHour;
@@ -149,6 +153,7 @@ function getForecast(response) {
     const icon = `<img class="forecast-weather-icon" src=${iconURL} alt=${iconAltText} />`;
 
     if (index === 0) {
+      dayElement.innerHTML = "Today";
       dateElement.innerHTML = formattedDate;
       minElement.innerHTML = minTemp;
       maxElement.innerHTML = maxTemp;
@@ -162,3 +167,5 @@ function getForecast(response) {
     }
   });
 }
+
+searchCity("Canberra");
