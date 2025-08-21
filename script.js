@@ -10,10 +10,8 @@ function handleSearchSubmit(event) {
 function searchCity(city) {
   let apiKey = "36a020bd802233oee28f5e56a4tb2a2d";
   let currentWeatherAPIURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  let forecastWeatherAPIURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
 
   axios.get(currentWeatherAPIURL).then(getWeather);
-  axios.get(forecastWeatherAPIURL).then(getForecast);
   formatDate();
 }
 
@@ -114,58 +112,6 @@ function formatDate() {
     hourField.innerHTML = currentHour;
     ampmField.innerHTML = "am";
   }
-}
-
-function getForecast(response) {
-  console.log("response.data", response.data);
-  // Today High & Low
-  let lowTempField = document.querySelector("#low-temp-number");
-  lowTempField.innerHTML = Math.round(
-    response.data.daily[0].temperature.minimum
-  );
-  let highTempField = document.querySelector("#high-temp-number");
-  highTempField.innerHTML = Math.round(
-    response.data.daily[0].temperature.maximum
-  );
-
-  // Forecast
-  const forecastData = response.data.daily;
-
-  forecastData.forEach((dayData, index) => {
-    const dayElement = document.querySelector(`#day${index + 1}`);
-    const dateElement = document.querySelector(`#day${index + 1}Date`);
-    const minElement = document.querySelector(`#day${index + 1}Low`);
-    const maxElement = document.querySelector(`#day${index + 1}High`);
-    const iconElement = document.querySelector(`#day${index + 1}Icon`);
-    const iconURL = dayData.condition.icon_url;
-    const iconAltText = dayData.condition.icon;
-
-    const date = new Date();
-    date.setDate(date.getDate() + index);
-    const formattedDay = date.toLocaleDateString("en-AU", {
-      weekday: "short",
-    });
-    const formattedDate = date.toLocaleDateString("en-AU", {
-      day: "numeric",
-    });
-    const minTemp = Math.round(dayData.temperature.minimum);
-    const maxTemp = Math.round(dayData.temperature.maximum);
-    const icon = `<img class="forecast-weather-icon" src=${iconURL} alt=${iconAltText} />`;
-
-    if (index === 0) {
-      dayElement.innerHTML = "Today";
-      dateElement.innerHTML = formattedDate;
-      minElement.innerHTML = minTemp;
-      maxElement.innerHTML = maxTemp;
-      iconElement.innerHTML = icon;
-    } else {
-      dayElement.innerHTML = formattedDay;
-      dateElement.innerHTML = formattedDate;
-      minElement.innerHTML = minTemp;
-      maxElement.innerHTML = maxTemp;
-      iconElement.innerHTML = icon;
-    }
-  });
 }
 
 searchCity("Canberra");
