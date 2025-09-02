@@ -19,51 +19,40 @@
         <input id="search-button" type="submit" value="🔍 Search" />
       </form>
     </header>
-    <body>
+    <main>
       <div class="container main-container">
-        <div class="header-grid">
-          <div class="column">
-            <h1 id="city"></h1>
-            <h2 id="country"></h2>
-          </div>
-          <div class="column" id="weather-icon">
-            <img src="" />
-          </div>
+        <div id="day-and-time">
+          <span id="day"></span> <span id="date"></span>
+          <span id="month"></span>, <span id="hour"></span>:<span
+            id="minutes"
+          ></span
+          ><span id="ampm"></span>
         </div>
         <div class="main-grid">
-          <div class="main-column">
-            <div id="day-and-time">
-              <strong>
-                <span id="day"></span> <span id="date"></span>
-                <span id="month"></span>, <span id="hour"></span>:<span
-                  id="minutes"
-                ></span
-                ><span id="ampm"></span>
-              </strong>
-            </div>
-            <div id="status"></div>
-            <div id="humidity">
-              <strong>💧Humidity: </strong>
-              <span id="humidity-number"></span>%
-            </div>
-            <div id="wind">
-              <strong style="margin-left: 5px">💨Wind: </strong>
-              <span id="wind-number"></span> m/s
-            </div>
+          <div>
+            <div id="city"></div>
+            <div id="country"></div>
           </div>
-          <div class="main-column">
-            <div class="temperature">
-              <span id="temperature"></span>
-              <span class="large-unit">°C</span>
+          <div>
+            <div class="current-weather">
+              <div id="weather-icon"></div>
+              <div id="temperature"></div>
             </div>
-            <span id="feels-like"
-              >Feels like <span id="feels-like-number"></span
-              ><span class="small-unit">°C</span>
-            </span>
+            <div class="current-status">
+              <span id="status"></span>
+              <span id="feels-like"></span>
+            </div>
           </div>
         </div>
+        <div><span id="high-temp"></span> <span id="low-temp"></span></div>
+        <div><span id="humidity"></span> <span id="wind"></span></div>
       </div>
-    </body>
+      <div class="container forecast-container">
+        <div class="forecast-grid">
+          <!-- HTML FORECAST GETS INSERTED HERE -->
+        </div>
+      </div>
+    </main>
     <footer class="container">
       This project was coded by
       <a href="https://github.com/jesssanders" target="_blank">Jess Sanders</a>,

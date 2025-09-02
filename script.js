@@ -10,8 +10,10 @@ function handleSearchSubmit(event) {
 function searchCity(city) {
   let apiKey = "36a020bd802233oee28f5e56a4tb2a2d";
   let currentWeatherAPIURL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let forecastWeatherAPIURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
 
   axios.get(currentWeatherAPIURL).then(getWeather);
+  axios.get(forecastWeatherAPIURL).then(getForecast);
   formatDate();
 }
 
@@ -19,23 +21,27 @@ function getWeather(response) {
   console.log("response", response);
 
   let cityField = document.querySelector("#city");
-  cityField.innerHTML = response.data.city;
   let countryField = document.querySelector("#country");
-  countryField.innerHTML = response.data.country;
-  let weatherIconField = document.querySelector("#weather-icon");
-  let weatherIcon = response.data.condition.icon_url;
-  let weatherIconAltText = response.data.condition.icon;
-  weatherIconField.innerHTML = `<img src=${weatherIcon} alt=${weatherIconAltText} />`;
-  let statusField = document.querySelector("#status");
-  statusField.innerHTML = response.data.condition.description;
-  let humidityField = document.querySelector("#humidity-number");
-  humidityField.innerHTML = response.data.temperature.humidity;
-  let windField = document.querySelector("#wind-number");
-  windField.innerHTML = Math.round(response.data.wind.speed);
   let temperatureField = document.querySelector("#temperature");
-  temperatureField.innerHTML = Math.round(response.data.temperature.current);
-  let feelsLikeField = document.querySelector("#feels-like-number");
-  feelsLikeField.innerHTML = Math.round(response.data.temperature.feels_like);
+  let feelsLikeField = document.querySelector("#feels-like");
+  let humidityField = document.querySelector("#humidity");
+  let windField = document.querySelector("#wind");
+  let statusField = document.querySelector("#status");
+  let weatherIconField = document.querySelector("#weather-icon");
+
+  let temperature = Math.round(response.data.temperature.current);
+  let feelsLike = Math.round(response.data.temperature.feels_like);
+  let weatherIcon = `${response.data.condition.icon_url}`;
+  let weatherIconAltText = response.data.condition.icon;
+
+  cityField.innerHTML = `${response.data.city}`;
+  countryField.innerHTML = `${response.data.country}`;
+  temperatureField.innerHTML = `${temperature}°C`;
+  feelsLikeField.innerHTML = `feels like ${feelsLike}°C`;
+  humidityField.innerHTML = `💧 Humidity: ${response.data.temperature.humidity}%,`;
+  windField.innerHTML = `💨 Wind: ${Math.round(response.data.wind.speed)} m/s`;
+  statusField.innerHTML = `${response.data.condition.description},`;
+  weatherIconField.innerHTML = `<img src=${weatherIcon} alt=${weatherIconAltText} class="weather-icon" />`;
 }
 
 function formatDate() {
@@ -112,6 +118,62 @@ function formatDate() {
     hourField.innerHTML = currentHour;
     ampmField.innerHTML = "am";
   }
+}
+
+function getForecast(response) {
+  console.log("response.data", response.data);
+  // Today High & Low
+  let lowTempField = document.querySelector("#low-temp");
+  let lowTemp = Math.round(response.data.daily[0].temperature.minimum);
+  lowTempField.innerHTML = `⬇️ Low: ${lowTemp}°C`;
+  let highTempField = document.querySelector("#high-temp");
+  let highTemp = Math.round(response.data.daily[0].temperature.maximum);
+  highTempField.innerHTML = `⬆️ High: ${highTemp}°C,`;
+
+  // Forecast
+  const forecastData = response.data.daily;
+
+  let forecastHTML = "";
+
+  forecastData.forEach(function (dayData, index) {
+    if (index < 7 && index > 0) {
+      let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      const date = new Date(dayData.time * 1000);
+      const forecastFormattedDay = days[date.getDay()];
+      const forecastFormattedDate = date.getDate();
+      const forecastMinTemp = Math.round(dayData.temperature.minimum);
+      const forecastMaxTemp = Math.round(dayData.temperature.maximum);
+      const forecastIconURL = dayData.condition.icon_url;
+      const forecastIconAltText = dayData.condition.icon;
+
+      forecastHTML =
+        forecastHTML +
+        `
+    <div class="forecast-column">
+      <span class="forecast-day">${forecastFormattedDay}</span>
+      <div class="forecast-date">${forecastFormattedDate}</div>
+      <div class="forecast-icon">
+        <img class="forecast-weather-icon" src=${forecastIconURL} alt=${forecastIconAltText} />
+      </div>
+      <div>
+        <div>
+          <span>H: </span>
+          <span class="forecast-high">${forecastMaxTemp}</span>
+          <span class="small-unit">°C</span>
+        </div>
+        <div>
+          <span>L: </span>
+          <span class="forecast-low">${forecastMinTemp}</span>
+          <span class="small-unit">°C</span>
+        </div>
+      </div> 
+    </div>
+    `;
+
+      let forecastArea = document.querySelector(".forecast-grid");
+      forecastArea.innerHTML = forecastHTML;
+    }
+  });
 }
 
 searchCity("Canberra");

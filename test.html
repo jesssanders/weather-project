@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="teststyles.css" />
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="container main-container">
+        <div id="day-and-time">
+          <strong>
+            <span id="day"></span> <span id="date"></span>
+            <span id="month"></span>, <span id="hour"></span>:<span
+              id="minutes"
+            ></span
+            ><span id="ampm"></span>
+          </strong>
+        </div>
+        <div class="header-grid">
+          <div class="header-column">
+            <h1 id="city"></h1>
+            <h2 id="country"></h2>
+          </div>
+          <div class="header-column" id="weather-icon">
+            <img src="" class="weather-icon" />
+          </div>
+        </div>
+        <div class="main-grid">
+          <div class="main-column">
+            <div id="status"></div>
+            <div id="range">
+              <span
+                ><strong>⬆️High: </strong><span id="high-temp-number"></span
+                ><span class="small-unit">°C</span></span
+              >
+              <span style="margin-left: 5px"
+                ><strong>⬇️Low: </strong><span id="low-temp-number"></span
+                ><span class="small-unit">°C</span></span
+              >
+            </div>
+            <div id="humidity">
+              <strong>💧Humidity: </strong>
+              <span id="humidity-number"></span>%
+            </div>
+            <div id="wind">
+              <strong style="margin-left: 5px">💨Wind: </strong>
+              <span id="wind-number"></span> m/s
+            </div>
+          </div>
+          <div class="main-column">
+            <div class="temperature">
+              <span id="temperature"></span>
+              <span class="large-unit">°C</span>
+            </div>
+            <span id="feels-like"
+              >Feels like <span id="feels-like-number"></span
+              ><span class="small-unit">°C</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="container" id="forecast-container">
+        <div class="forecast-grid">
+          <!-- HTML FORECAST GETS INSERTED HERE -->
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
